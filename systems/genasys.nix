@@ -13,7 +13,7 @@ let
 in
 {
   imports = [
-    ./disk-config.nix
+    ../modules/disk.nix
   ];
 
   boot = {
@@ -39,7 +39,7 @@ in
     ];
   };
 
-  #time.timeZone = "America/Los_Angeles";
+  time.timeZone = "UTC";
 
   networking = {
     hostName = "genasys";
@@ -49,7 +49,6 @@ in
   };
 
   nix = {
-    #nixPath = [ "nixos-config=/home/${user.name}/.local/share/src/nixos-config:/etc/nixos" ];
     package = pkgs.nixVersions.latest;
     extraOptions = ''
       experimental-features = nix-command flakes
@@ -59,7 +58,7 @@ in
       auto-optimise-store = true;
     };
   };
-  
+
   programs = {
     dconf.enable = true;
     zsh.enable = true;
@@ -127,6 +126,7 @@ in
   environment.systemPackages = with pkgs; [
     gitAndTools.gitFull
     inetutils
+    neovim
   ];
 
   system.stateVersion = "21.11"; # Don't change this

@@ -10,33 +10,41 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = { self, nixpkgs, nixos-generators, disko, ... }: {
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixos-generators,
+      disko,
+      ...
+    }:
+    {
 
-    # images
-    packages.x86_64-linux = {
-      vm = nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        format = "vm";
-        modules = [
-          disko.nixosModules.disko
-          ./configuration.nix
-        ];
+      # images
+      packages.x86_64-linux = {
+        vm = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          format = "vm";
+          modules = [
+            disko.nixosModules.disko
+            ./systems/genasys.nix
+          ];
+        };
+        vmware = nixos-generators.nixosGenerate {
+          system = "x86_64-linux";
+          format = "vmware";
+          modules = [
+            disko.nixosModules.disko
+            ./systems/genasys.nix
+          ];
+        };
+
       };
-      vmware = nixos-generators.nixosGenerate {
-        system = "x86_64-linux";
-        format = "vmware";
-        modules = [
-          disko.nixosModules.disko
-          ./configuration.nix
-        ];
-      };
-      
+
+      # systems
+      nixosConfigurations.genasys = nixpkgs.legacyPackages.x86_64-linux.nixos [
+        disko.nixosModules.disko
+        ./systems/genasys.nix
+      ];
     };
-    
-    # systems
-    nixosConfigurations.genasys = nixpkgs.legacyPackages.x86_64-linux.nixos [
-      disko.nixosModules.disko
-      ./configuration.nix
-    ];
-  };
 }
