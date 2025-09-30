@@ -35,6 +35,9 @@ in
   users = {
     defaultUserShell = pkgs.zsh;
     users = {
+      root = {
+        openssh.authorizedKeys.keys = keys;
+      };
       gaia = {
         isNormalUser = true;
         openssh.authorizedKeys.keys = keys;
@@ -46,9 +49,7 @@ in
       };
     };
 
-    root = {
-      openssh.authorizedKeys.keys = keys;
-    };
+
   };
 
   environment.systemPackages = with pkgs; [
