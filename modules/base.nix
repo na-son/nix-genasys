@@ -37,7 +37,7 @@
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/gaia/nix-genasys"; # sets NH_OS_FLAKE variable for you
+      flake = "/home/gaia/src/nix-genasys"; # sets NH_OS_FLAKE variable for you
     };
     zsh = {
       enable = true;
