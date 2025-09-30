@@ -13,121 +13,42 @@ let
 in
 {
   imports = [
+    ../modules/base.nix
+    ../modules/nuta.nix
     ../modules/disk.nix
   ];
 
-  boot = {
-    loader = {
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 42;
-      };
-      efi.canTouchEfiVariables = true;
-    };
-    initrd.availableKernelModules = [
-      "ata_piix"
-      "virtio_pci"
-      "virtio_scsi"
-      "uhci_hcd"
-      "sd_mod"
-      "sr_mod"
-    ];
-
-    kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [
-      "tun"
-    ];
-  };
-
-  time.timeZone = "UTC";
-
-  networking = {
-    hostName = "genasys";
-    usePredictableInterfaceNames = lib.mkDefault true;
-    networkmanager.enable = true;
-    useDHCP = false;
-  };
-
-  nix = {
-    package = pkgs.nixVersions.latest;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-    settings = {
-      #allowed-users = [ "${user.name}" ];
-      auto-optimise-store = true;
-    };
-  };
-
-  programs = {
-    dconf.enable = true;
-    zsh.enable = true;
-  };
+  networking.hostName = "genasys";
 
   services = {
-    dbus.enable = true;
-    openssh.enable = true;
+    forgejo = {
+      enable = true;
+    };
   };
 
-  #systemd = {
-  #  services = {
-  #    };
-  #  };
-  #};
-
-  hardware = {
-    enableRedistributableFirmware = true;
-  };
-
-  #virtualisation = {
-  #  containers.enable = true;
-
-  #  podman = {
-  #    enable = true;
-  #    dockerCompat = true;
-  #    defaultNetwork.settings.dns_enabled = true;
-  #  };
-  #};
-
+  nix.settings.allowed-users = [ "gaia" ];
   users.users = {
-    #${user.name} = {
-    #  isNormalUser = true;
-    #  extraGroups = [
-    #    "wheel" # Enable ‘sudo’ for the user.
-    #    "networkmanager"
-    #    "video" # hotplug devices and thunderbolt
-    #    "dialout" # TTY access
-    #    "docker"
-    #  ];
-    #  shell = pkgs.zsh;
-    #  openssh.authorizedKeys.keys = keys;
-    #};
+    gaia = {
+      isNormalUser = true;
+      extraGroups = [
+        "wheel" # Enable ‘sudo’ for the user.
+        "networkmanager"
+        "video" # hotplug devices and thunderbolt
+        "dialout" # TTY access
+        "docker"
+      ];
+      shell = pkgs.zsh;
+      openssh.authorizedKeys.keys = keys;
+    };
 
     root = {
       openssh.authorizedKeys.keys = keys;
     };
   };
 
-  security.sudo = {
-    enable = true;
-    extraRules = [
-      {
-        commands = [
-          {
-            command = "${pkgs.systemd}/bin/reboot";
-            options = [ "NOPASSWD" ];
-          }
-        ];
-        groups = [ "wheel" ];
-      }
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
-    gitAndTools.gitFull
+    #gitAndTools.gitFull
     inetutils
-    neovim
+    #neovim
   ];
-
-  system.stateVersion = "21.11"; # Don't change this
 }

@@ -16,3 +16,14 @@ Format, partition, and install nixos.
 sudo nix --extra-experimental-features 'nix-command flakes' run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'github:na-son/nix-genasys#genasys' --disk sda /dev/sda
 ```
 
+## updates
+
+To update a given system,
+
+```shell
+nixos-rebuild switch --flake .#
+```
+
+
+
+
