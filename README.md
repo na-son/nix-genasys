@@ -18,10 +18,11 @@ sudo nix --extra-experimental-features 'nix-command flakes' run 'github:nix-comm
 
 ## updates
 
-To update a given system,
+To update a given system, simply run `nh os switch`t 
 
 ```shell
-nixos-rebuild switch --flake .#
+cd /home/gaia/src/nix-genasys
+nh os switch .#
 ```
 
 ## misc

@@ -31,7 +31,9 @@ in
     };
   };
 
-  nix.settings.allowed-users = [ "gaia" ];
+  nix.settings.allowed-users = [
+    "@wheel"
+  ];
   users = {
     defaultUserShell = pkgs.zsh;
     users = {
@@ -48,7 +50,6 @@ in
         ];
       };
     };
-
 
   };
 
