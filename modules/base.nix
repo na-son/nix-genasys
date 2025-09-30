@@ -71,6 +71,9 @@
 
   time.timeZone = "UTC";
 
+  services = {
+    openssh.enable = true;
+  };
   system.stateVersion = "21.11"; # don't change, keep it here
 
   system = {
@@ -85,4 +88,5 @@
       randomizedDelaySec = "45min";
     };
   };
+  
 }

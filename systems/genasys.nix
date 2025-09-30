@@ -47,8 +47,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    #gitAndTools.gitFull
     inetutils
-    #neovim
   ];
 }
