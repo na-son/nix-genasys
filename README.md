@@ -24,6 +24,18 @@ To update a given system,
 nixos-rebuild switch --flake .#
 ```
 
+## misc
 
+[nh](https://github.com/nix-community/nh) is available:
+
+
+## image generation
+
+[nixos-generators](https://github.com/nix-community/nixos-generators) is included.
+
+## plans
+
+[attic](https://github.com/zhaofengli/attic) for binary cache
+[acme](https://nixos.org/manual/nixos/stable/#module-security-acme)
 
 
