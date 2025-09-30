@@ -18,17 +18,18 @@ sudo nix --extra-experimental-features 'nix-command flakes' run 'github:nix-comm
 
 ## updates
 
-To update a given system, simply run `nh os switch`t 
+To update a given system, simply run `nh os switch`. Alternatively:
 
 ```shell
-cd /home/gaia/src/nix-genasys
+cd /home/gaia/src
+git clone https://github.com/na-son/nix-genasys.git
+cd nix-genasys
 nh os switch .#
 ```
 
 ## misc
 
 [nh](https://github.com/nix-community/nh) is available:
-
 
 ## image generation
 
