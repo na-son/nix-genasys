@@ -87,10 +87,10 @@ in
         ];
       };
     };
-
   };
 
   environment.systemPackages = with pkgs; [
     inetutils
+    step-cli
   ];
 }
