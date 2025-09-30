@@ -21,24 +21,29 @@ in
   networking.hostName = "genasys";
 
   services = {
+    step-ca = {
+      enable = true;
+      port = 8443;
+      address = "0.0.0.0";
+    };
     forgejo = {
       enable = true;
     };
   };
 
   nix.settings.allowed-users = [ "gaia" ];
-  users.users = {
-    gaia = {
-      isNormalUser = true;
-      extraGroups = [
-        "wheel" # Enable ‘sudo’ for the user.
-        "networkmanager"
-        "video" # hotplug devices and thunderbolt
-        "dialout" # TTY access
-        "docker"
-      ];
-      shell = pkgs.zsh;
-      openssh.authorizedKeys.keys = keys;
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users = {
+      gaia = {
+        isNormalUser = true;
+        openssh.authorizedKeys.keys = keys;
+        extraGroups = [
+          "wheel" # Enable ‘sudo’ for the user.
+          "networkmanager"
+          "dialout" # TTY access
+        ];
+      };
     };
 
     root = {

@@ -35,24 +35,8 @@
     };
     zsh = {
       enable = true;
-
     };
   };
-
-  #security.sudo = {
-  #  enable = true;
-  #  extraRules = [
-  #    {
-  #      commands = [
-  #        {
-  #          command = "${pkgs.systemd}/bin/reboot";
-  #          options = [ "NOPASSWD" ];
-  #        }
-  #      ];
-  #      groups = [ "wheel" ];
-  #    }
-  #  ];
-  #};
 
   security.sudo-rs = {
     enable = true;
@@ -80,7 +64,7 @@
     autoUpgrade = {
       enable = true;
       #flake = inputs.self.outPath;
-      flake = "path:${config.users.users.gaia.home}/src/${config.networking.hostName}#"; # TODO: sync repos here for now
+      flake = "path:${config.users.users.gaia.home}/src/nix-genasys#"; # TODO: sync repos here for now
       flags = [
         "-L" # print build logs
       ];
@@ -88,5 +72,5 @@
       randomizedDelaySec = "45min";
     };
   };
-  
+
 }
