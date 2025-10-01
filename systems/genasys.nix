@@ -91,6 +91,7 @@ in
 
   environment.systemPackages = with pkgs; [
     inetutils
+    openssl
     step-cli
   ];
 }
