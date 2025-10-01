@@ -62,3 +62,14 @@ The `step-cli` utility can be used to check further, after configuration with `s
 ```shell
 step ca health
 ```
+
+## Moving on
+
+Grab the fingerprint with `step certificate fingerprint /etc/ssl/certs/root.crt`
+
+On a different host, attempt to generate a certificate after bootstrapping:
+
+```shell
+step ca bootstrap --ca-url [CA URL] --fingerprint [CA fingerprint]
+step ca certificate some-server-name.domain.com srv.crt srv.key
+```
