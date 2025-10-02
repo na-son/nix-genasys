@@ -16,6 +16,14 @@ Format, partition, and install nixos.
 sudo nix --extra-experimental-features 'nix-command flakes' run 'github:nix-community/disko/latest#disko-install' -- --write-efi-boot-entries --flake 'github:na-son/nix-genasys#genasys' --disk sda /dev/sda
 ```
 
+## image generation
+
+[nixos-generators](https://github.com/nix-community/nixos-generators) is included. Genasys provides a place to build.
+
+```shell
+nix build .#sol
+```
+
 ## updates
 
 [nh](https://github.com/nix-community/nh) pins to the flake, just run `nh os switch`. Alternatively:
@@ -28,10 +36,6 @@ nh os switch .#
 ```
 
 ## misc
-
-### image generation
-
-[nixos-generators](https://github.com/nix-community/nixos-generators) is included.
 
 ### plans
 

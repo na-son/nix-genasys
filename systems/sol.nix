@@ -15,7 +15,7 @@ in
   imports = [
     ../modules/base.nix
     ../modules/nuta.nix
-#    ../modules/disk/standard.nix
+    #    ../modules/disk/standard.nix
   ];
 
   networking.hostName = "sol";
@@ -46,7 +46,7 @@ in
           "dialout" # TTY access
         ];
       };
-      
+
       helios = {
         isNormalUser = true;
         openssh.authorizedKeys.keys = keys;

@@ -33,7 +33,7 @@
           ];
         };
 
-      # vmware proprietary format
+        # vmware proprietary format
         vmware = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           format = "vmware";

@@ -5,6 +5,8 @@
   ...
 }:
 {
+  # base system configuration, suitable for most full-featured systems
+
   hardware = {
     enableRedistributableFirmware = true;
   };
