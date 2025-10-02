@@ -3,6 +3,7 @@
   pkgs,
   user,
   lib,
+  modulesPath,
   ...
 }:
 
@@ -16,7 +17,6 @@ in
     ../modules/base.nix
     ../modules/nuta.nix
     ../modules/acme-http.nix
-    ../modules/disk/image.nix
   ];
 
   networking.hostName = "sol";

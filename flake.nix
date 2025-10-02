@@ -22,7 +22,7 @@
       packages.x86_64-linux = {
         sol = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
-          format = "vm";
+          format = "qcow2-efi";
           modules = [
             ./systems/sol.nix
           ];
@@ -36,7 +36,8 @@
       ];
 
       nixosConfigurations.sol = nixpkgs.legacyPackages.x86_64-linux.nixos [
-        #disko.nixosModules.disko
+        disko.nixosModules.disko
+        ./modules/disk/standard.nix
         ./systems/sol.nix
       ];
     };
