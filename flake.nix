@@ -22,7 +22,7 @@
       packages.x86_64-linux = {
         sol = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
-          format = "qcow2-efi";
+          format = "qcow-efi";
           modules = [
             ./systems/sol.nix
           ];
