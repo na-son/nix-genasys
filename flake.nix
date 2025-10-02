@@ -22,14 +22,18 @@
 
       # images
       packages.x86_64-linux = {
-        vm = nixos-generators.nixosGenerate {
+
+        # qcow2 for kvm, nutanix
+        sol = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           format = "vm";
           modules = [
-            disko.nixosModules.disko
-            ./systems/genasys.nix
+            #disko.nixosModules.disko
+            ./systems/sol.nix
           ];
         };
+
+      # vmware proprietary format
         vmware = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           format = "vmware";
@@ -38,7 +42,6 @@
             ./systems/genasys.nix
           ];
         };
-
       };
 
       # systems
