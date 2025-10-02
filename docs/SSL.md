@@ -45,8 +45,6 @@ mv root.crt /etc/ssl/certs/root.crt
 # put the key in /run/keys/intermediate.password
 sudo chown step-ca:nobody /etc/ssl/certs/intermediate.crt
 sudo chown step-ca:nobody /etc/ssl/certs/intermediate.key
-sudo chown step-ca:nobody /etc/ssl/certs/root.pem
-sudo chown step-ca:nobody /run/keys/intermediate.key
 ```
 
 ## Verification
