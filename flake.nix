@@ -19,40 +19,25 @@
       ...
     }:
     {
-
-      # images
       packages.x86_64-linux = {
-
-        # qcow2 for kvm, nutanix
         sol = nixos-generators.nixosGenerate {
           system = "x86_64-linux";
           format = "vm";
           modules = [
-            #disko.nixosModules.disko
             ./systems/sol.nix
           ];
         };
 
-        # vmware proprietary format
-        vmware = nixos-generators.nixosGenerate {
-          system = "x86_64-linux";
-          format = "vmware";
-          modules = [
-            disko.nixosModules.disko
-            ./systems/genasys.nix
-          ];
-        };
+        # systems
+        nixosConfigurations.genasys = nixpkgs.legacyPackages.x86_64-linux.nixos [
+          disko.nixosModules.disko
+          ./systems/genasys.nix
+        ];
+
+        nixosConfigurations.sol = nixpkgs.legacyPackages.x86_64-linux.nixos [
+          #disko.nixosModules.disko
+          ./systems/sol.nix
+        ];
       };
-
-      # systems
-      nixosConfigurations.genasys = nixpkgs.legacyPackages.x86_64-linux.nixos [
-        disko.nixosModules.disko
-        ./systems/genasys.nix
-      ];
-
-      nixosConfigurations.sol = nixpkgs.legacyPackages.x86_64-linux.nixos [
-        #disko.nixosModules.disko
-        ./systems/sol.nix
-      ];
     };
 }
