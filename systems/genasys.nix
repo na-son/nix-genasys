@@ -62,10 +62,6 @@ in
 
       };
     };
-
-    forgejo = {
-      enable = true;
-    };
   };
 
   nix.settings.allowed-users = [
