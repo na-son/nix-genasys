@@ -15,12 +15,18 @@ in
   imports = [
     ../modules/base.nix
     ../modules/nuta.nix
-    #    ../modules/disk/standard.nix
+    ../modules/acme-http.nix
+    ../modules/disk/image.nix
   ];
 
   networking.hostName = "sol";
 
   services = {
+    acme-http = {
+      enable = true;
+      domain = "test.internal";
+      mail = "ssl@test.internal";
+    };
     forgejo = {
       enable = true;
     };
@@ -28,6 +34,7 @@ in
 
   nix.settings.allowed-users = [
     "@wheel"
+    "helios"
   ];
 
   users = {
