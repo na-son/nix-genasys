@@ -27,17 +27,17 @@
             ./systems/sol.nix
           ];
         };
-
-        # systems
-        nixosConfigurations.genasys = nixpkgs.legacyPackages.x86_64-linux.nixos [
-          disko.nixosModules.disko
-          ./systems/genasys.nix
-        ];
-
-        nixosConfigurations.sol = nixpkgs.legacyPackages.x86_64-linux.nixos [
-          #disko.nixosModules.disko
-          ./systems/sol.nix
-        ];
       };
+
+      # systems
+      nixosConfigurations.genasys = nixpkgs.legacyPackages.x86_64-linux.nixos [
+        disko.nixosModules.disko
+        ./systems/genasys.nix
+      ];
+
+      nixosConfigurations.sol = nixpkgs.legacyPackages.x86_64-linux.nixos [
+        #disko.nixosModules.disko
+        ./systems/sol.nix
+      ];
     };
 }
