@@ -4,8 +4,8 @@
   lib,
   ...
 }:
+# defaults for podman
 {
-  # sane set of defaults for machines with podman on them
   virtualisation = {
     containers.enable = true;
 

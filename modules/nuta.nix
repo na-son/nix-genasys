@@ -4,8 +4,8 @@
   lib,
   ...
 }:
+# nutanix-specific configuration, should be compatible with *most* qemu / kvm hypervisors
 {
-  # nutanix-specific configuration, should be compatible with *most* qemu / kvm hypervisors
   boot = {
     loader = {
       systemd-boot = {
