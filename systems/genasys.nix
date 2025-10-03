@@ -21,6 +21,11 @@ in
   networking.hostName = "genasys";
 
   services = {
+    nix-serve = {
+      enable = true;
+      openFirewall = true;
+    };
+
     step-ca = {
       enable = true;
       address = "0.0.0.0";
