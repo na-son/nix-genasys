@@ -21,6 +21,7 @@ in
   networking.hostName = "genasys";
 
   services = {
+    # 
     nix-serve = {
       enable = true;
       openFirewall = true;
