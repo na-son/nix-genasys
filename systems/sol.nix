@@ -15,6 +15,7 @@ in
 {
   imports = [
     ../modules/base.nix
+    ../modules/disk/sol.nix
     ../modules/nuta.nix
     ../modules/acme-http.nix
   ];

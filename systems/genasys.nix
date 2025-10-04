@@ -18,10 +18,26 @@ in
     ../modules/disk/standard.nix
   ];
 
-  networking.hostName = "genasys";
+  networking = {
+    hostName = "genasys";
+    firewall.allowedTCPPorts = [
+      22
+      80
+    ];
+  };
 
   services = {
-    # 
+    nginx = {
+      enable = true;
+      virtualHosts = {
+        "genasys.example.com" = {
+          locations."/store" = {
+            root = "/nix";
+          };
+        };
+      };
+    };
+
     nix-serve = {
       enable = true;
       openFirewall = true;
