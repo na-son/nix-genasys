@@ -8,7 +8,7 @@ Genesys runs a smallstep CA, which needs some bootstrapping the first time it's 
 A valid root and intermediate CA is requried. Get root.crt and ca1.crt similar to below:
 
 ```shell
-curl https://ca1.domain.com -w "%{certs}" -o /dev/null > test.crt
+curl https://ca1.example.com -w "%{certs}" -o /dev/null > test.crt
 ```
 
 ```shell
@@ -22,7 +22,7 @@ scp ca1.crt gaia@genasys:
 Generate the certificate:
 
 ```shell
-step certificate create "genasys" intermediate.csr intermediate.key --csr
+step certificate create "genasys.example.com" intermediate.csr intermediate.key --csr
 ```
 
 Copy it to the intermediate CA, and sign:
@@ -68,6 +68,10 @@ Grab the fingerprint with `step certificate fingerprint /etc/ssl/certs/root.crt`
 On a different host, attempt to generate a certificate after bootstrapping:
 
 ```shell
-step ca bootstrap --ca-url [CA URL] --fingerprint [CA fingerprint]
+step ca bootstrap genasys.example.com:8443 --fingerprint [CA fingerprint]
 step ca certificate some-server-name.domain.com srv.crt srv.key
 ```
+
+## Stateless
+
+Provided you trust the root key, `modules/acme-http.nix` will provide a webserver configured for https://github.com/acmesh-official/acme.sh/wiki/Stateless-Mode
